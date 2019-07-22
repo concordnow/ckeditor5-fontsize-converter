@@ -1,0 +1,32 @@
+{
+  "name": "@concordnow/ckeditor5-fontsize-converter",
+  "version": "0.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "node ./node_modules/.bin/ckeditor5-dev-tests",
+    "manual": "node ./node_modules/.bin/ckeditor5-dev-tests-manual"
+  },
+  "keywords": [
+    "ckeditor",
+    "ckeditor5"
+  ],
+  "author": "Concordnow",
+  "license": "ISC",
+  "dependencies": {
+    "@ckeditor/ckeditor5-core": "^12.2.1",
+    "@ckeditor/ckeditor5-engine": "^13.2.1"
+  },
+  "devDependencies": {
+    "@ckeditor/ckeditor5-dev-tests": "^16.4.0",
+    "eslint": "^6.0.1",
+    "eslint-config-ckeditor5": "^1.0.14",
+    "yarn": "^1.17.3"
+  },
+  "files": [
+    "src"
+  ],
+  "engines": {
+    "node": ">=8.0.0"
+  }
+}
