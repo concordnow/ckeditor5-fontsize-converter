@@ -1,18 +1,22 @@
 {
   "name": "@concordnow/ckeditor5-fontsize-converter",
   "version": "0.0.0",
-  "description": "",
+  "description": "A ckeditor5 plugin to convert non pixel font-size",
   "main": "",
+  "repository": "https://github.com/concordnow/ckeditor5-fontsize-converter",
+  "homepage": "https://concordnow.github.io/ckeditor5-fontsize-converter",
   "scripts": {
     "test": "node ./node_modules/.bin/ckeditor5-dev-tests",
     "manual": "node ./node_modules/.bin/ckeditor5-dev-tests-manual"
   },
   "keywords": [
     "ckeditor",
-    "ckeditor5"
+    "ckeditor5",
+    "ckeditor5-plugin",
+    "fontsize"
   ],
-  "author": "Concordnow",
-  "license": "ISC",
+  "author": "Concordnow Worldwide Inc.",
+  "license": "MIT",
   "dependencies": {
     "@ckeditor/ckeditor5-core": "^12.2.1",
     "@ckeditor/ckeditor5-engine": "^13.2.1"
