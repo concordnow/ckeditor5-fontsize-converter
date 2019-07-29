@@ -5,6 +5,9 @@
   "main": "",
   "repository": "https://github.com/concordnow/ckeditor5-fontsize-converter",
   "homepage": "https://concordnow.github.io/ckeditor5-fontsize-converter",
+	"publishConfig": {
+		"access": "public"
+	},
   "scripts": {
     "test": "node ./node_modules/.bin/ckeditor5-dev-tests",
     "manual": "node ./node_modules/.bin/ckeditor5-dev-tests-manual"
