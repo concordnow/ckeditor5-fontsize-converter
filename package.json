@@ -1,6 +1,6 @@
 {
   "name": "ckeditor5-fontsize-converter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A ckeditor5 plugin to convert non pixel font-size",
   "main": "",
   "repository": "https://github.com/concordnow/ckeditor5-fontsize-converter",
