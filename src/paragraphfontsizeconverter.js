@@ -1,6 +1,6 @@
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 
-export default class FontSizeConverter extends Plugin {
+export default class ParagraphFontSizeConverter extends Plugin {
 	static get pluginName() {
 		return 'ParagraphFontSizeConverter';
 	}
