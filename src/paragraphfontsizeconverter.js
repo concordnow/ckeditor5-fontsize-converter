@@ -8,7 +8,7 @@ export default class ParagraphFontSizeConverter extends Plugin {
 	static upcastFontSize() {
 		return dispatcher => {
 			dispatcher.on( 'element:p', ( evt, data, conversionApi ) => {
-				const { consumable, schema, writer } = conversionApi;
+				const { consumable, writer } = conversionApi;
 				const { modelRange, viewItem } = data;
 
 				if ( !consumable.consume( viewItem, { style: 'font-size' } ) ) {
@@ -23,10 +23,23 @@ export default class ParagraphFontSizeConverter extends Plugin {
 
 				fontSize = Math.round( parseInt( fontSize.replace( 'pt', '' ) ) * ( 2 / 3 * 2 ) );
 
-				for ( const value of modelRange ) {
-					if ( schema.checkAttribute( value.item, 'fontSize' ) ) {
-						writer.setAttribute( 'fontSize', fontSize, value.item );
+				writer.setAttribute( 'fontSize', fontSize, modelRange );
+
+				for ( const value of modelRange.getWalker() ) {
+					const item = value.item;
+					if ( !item.getStyle ) {
+						continue;
 					}
+
+					let itemFontSize = item.getStyle( 'font-size' );
+
+					if ( !itemFontSize ) {
+						continue;
+					}
+
+					itemFontSize = Math.round( parseInt( itemFontSize.replace( 'pt', '' ) ) * ( 2 / 3 * 2 ) );
+
+					writer.setAttribute( 'fontSize', itemFontSize, item );
 				}
 			} );
 		};
