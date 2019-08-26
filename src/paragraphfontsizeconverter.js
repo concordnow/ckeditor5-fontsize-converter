@@ -1,17 +1,5 @@
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-
-const getRoundedFontSize = fontSize => {
-	switch ( true ) {
-		case fontSize.indexOf( 'pt' ) > -1:
-			fontSize = parseInt( fontSize.replace( 'pt', '' ) ) * ( 2 / 3 * 2 );
-			break;
-		case fontSize.indexOf( 'px' ) > -1:
-			fontSize = parseInt( fontSize.replace( 'px', '' ) );
-			break;
-	}
-
-	return Math.round( fontSize );
-};
+import { getRoundedFontSize } from './utils';
 
 const setFontSize = ( data, conversionApi ) => {
 	const { consumable, writer } = conversionApi;
