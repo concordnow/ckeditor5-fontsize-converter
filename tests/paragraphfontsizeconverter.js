@@ -4,6 +4,7 @@ import { getData as getViewData } from '@ckeditor/ckeditor5-engine/src/dev-utils
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 
 import ParagraphFontSizeConverter from './../src/paragraphfontsizeconverter';
+import { POINT_TO_PIXEL_MULTIPLICATOR } from './../src/utils';
 
 describe( 'ParagraphFontSizeConverter', () => {
 	let editor, model, doc;
@@ -47,7 +48,7 @@ describe( 'ParagraphFontSizeConverter', () => {
 			editor.setData( '<p style="font-size:50pt;">foo</p>' );
 
 			const paragraph = doc.getRoot().getChild( 0 );
-			const expectedValue = Math.round( 50 * ( 2 / 3 * 2 ) );
+			const expectedValue = Math.round( 50 * POINT_TO_PIXEL_MULTIPLICATOR );
 
 			expect( paragraph.hasAttribute( 'fontSize' ) ).to.be.true;
 			expect( paragraph.getAttribute( 'fontSize' ) ).to.equal( expectedValue );

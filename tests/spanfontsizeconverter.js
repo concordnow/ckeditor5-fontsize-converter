@@ -4,6 +4,7 @@ import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import FontSizeEditing from '@ckeditor/ckeditor5-font/src/fontsize/fontsizeediting';
 
 import SpanFontSizeConverter from './../src/spanfontsizeconverter';
+import { POINT_TO_PIXEL_MULTIPLICATOR } from './../src/utils';
 
 describe( 'SpanFontSizeConverter', () => {
 	let editor, doc;
@@ -37,7 +38,7 @@ describe( 'SpanFontSizeConverter', () => {
 
 		it( 'should convert font-size in px for every children', () => {
 			editor.setData( '<p>f<span style="font-size:30pt;">o</span>o</p>' );
-			const fontSize = Math.round( 30 * ( 2 / 3 * 2 ) );
+			const fontSize = Math.round( 30 * POINT_TO_PIXEL_MULTIPLICATOR );
 
 			expect( getModelData( doc ) ).to.equal( `<paragraph>[]f<$text fontSize="${ fontSize }">o</$text>o</paragraph>` );
 			expect( editor.getData() )
