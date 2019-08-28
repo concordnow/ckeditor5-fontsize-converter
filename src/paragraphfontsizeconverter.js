@@ -37,16 +37,11 @@ export default class ParagraphFontSizeConverter extends Plugin {
 		const editor = this.editor;
 
 		editor.conversion.for( 'upcast' ).add( this.constructor.upcastFontSize() );
-		editor.conversion.for( 'downcast' ).attributeToAttribute( {
+		editor.conversion.for( 'downcast' ).attributeToElement( {
 			model: 'fontSize',
-			view: modelAttributeValue => {
-				return {
-					key: 'style',
-					value: {
-						'font-size': modelAttributeValue + 'px'
-					}
-				};
-			}
+			view: ( modelAttributeValue, viewWriter ) => viewWriter.createAttributeElement( 'span', {
+				style: `font-size:${ modelAttributeValue }px`
+			} )
 		} );
 	}
 }
