@@ -21,13 +21,13 @@
   "author": "Concordnow Worldwide Inc.",
   "license": "MIT",
   "dependencies": {
-    "@ckeditor/ckeditor5-core": "^12.2.1",
-    "@ckeditor/ckeditor5-engine": "^13.2.1"
+    "@ckeditor/ckeditor5-core": "^12.3.0",
+    "@ckeditor/ckeditor5-engine": "^14.0.0"
   },
   "devDependencies": {
-    "@ckeditor/ckeditor5-dev-tests": "^16.4.0",
-    "eslint": "^6.0.1",
-    "eslint-config-ckeditor5": "^1.0.14",
+    "@ckeditor/ckeditor5-dev-tests": "^16.7.1",
+    "eslint": "^6.1.0",
+    "eslint-config-ckeditor5": "^2.0.0",
     "yarn": "^1.17.3"
   },
   "files": [
