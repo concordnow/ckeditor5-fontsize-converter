@@ -17,7 +17,11 @@ const setFontSize = ( data, conversionApi ) => {
 
 	fontSize = getRoundedFontSize( fontSize );
 
-	writer.setAttribute( 'fontSize', fontSize, modelRange );
+	for ( const value of data.modelRange.getWalker() ) {
+		if ( value.type === 'text' && !value.item.getAttribute( 'fontSize' ) ) {
+			writer.setAttribute( 'fontSize', fontSize, writer.createRangeOn( value.item ) );
+		}
+	}
 };
 
 export default class ParagraphFontSizeConverter extends Plugin {
@@ -37,16 +41,11 @@ export default class ParagraphFontSizeConverter extends Plugin {
 		const editor = this.editor;
 
 		editor.conversion.for( 'upcast' ).add( this.constructor.upcastFontSize() );
-		editor.conversion.for( 'downcast' ).attributeToAttribute( {
+		editor.conversion.for( 'downcast' ).attributeToElement( {
 			model: 'fontSize',
-			view: modelAttributeValue => {
-				return {
-					key: 'style',
-					value: {
-						'font-size': modelAttributeValue + 'px'
-					}
-				};
-			}
+			view: ( modelAttributeValue, viewWriter ) => viewWriter.createAttributeElement( 'span', {
+				style: `font-size:${ modelAttributeValue }px`
+			} )
 		} );
 	}
 }
