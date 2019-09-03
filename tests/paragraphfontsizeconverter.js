@@ -67,7 +67,7 @@ describe( 'ParagraphFontSizeConverter', () => {
 				.to.equal( '<p><span style="font-size:67px">foo</span></p>' );
 		} );
 
-		it( 'should convert all children font-size in px', () => {
+		it( 'should convert all paragraph font-size in px', () => {
 			const fontSizeOptions = editor.config._config.fontSize;
 
 			const rawData = fontSizeOptions.options.map( fontsize => `<p style="font-size:${ fontsize }px;">foo</p>` )
@@ -85,7 +85,7 @@ describe( 'ParagraphFontSizeConverter', () => {
 				.to.equal( viewData );
 		} );
 
-		it( 'should convert all children font-size in pt', () => {
+		it( 'should convert all paragraph font-size in pt', () => {
 			const fontSizeOptions = editor.config._config.fontSize;
 
 			const rawData = fontSizeOptions.options.map( fontsize => `<p style="font-size:${ fontsize }pt;">foo</p>` )
@@ -103,6 +103,32 @@ describe( 'ParagraphFontSizeConverter', () => {
 
 			expect( getViewData( editor.editing.view, { withoutSelection: true } ) )
 				.to.equal( dataViewInPixels );
+		} );
+
+		it( 'should convert all children font-size in px', () => {
+			const data = '<p style="font-size: 36px;">' +
+			'<span style="font-size: 18px;">mixed </span>' +
+			'<span style="font-size: 14px;">fonts</span> ' +
+			'<span style="font-size: 24px;">in</span> ' +
+			'<span style="font-size: 8px;">the</span> ' +
+			'<span>same</span>' +
+			'<span style="font-size: 18px;"> line</span>' +
+			'</p>';
+
+			const expectedData = '<p>' +
+			'<span style="font-size:18px;">mixed </span>' +
+			'<span style="font-size:14px;">fonts</span>' +
+			'<span style="font-size:36px;"> </span>' +
+			'<span style="font-size:24px;">in</span>' +
+			'<span style="font-size:36px;"> </span>' +
+			'<span style="font-size:8px;">the</span>' +
+			'<span style="font-size:36px;"> same</span>' +
+			'<span style="font-size:18px;"> line</span>' +
+			'</p>';
+
+			editor.setData( data );
+
+			expect( editor.getData() ).to.equal( expectedData );
 		} );
 	} );
 } );
