@@ -4,6 +4,7 @@ import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import FontSizeEditing from '@ckeditor/ckeditor5-font/src/fontsize/fontsizeediting';
 
 import SpanFontSizeConverter from './../src/spanfontsizeconverter';
+import DowncastConverter from './../src/downcastconverter';
 import { POINT_TO_PIXEL_MULTIPLICATOR, getRoundedFontSize } from './../src/utils';
 
 describe( 'SpanFontSizeConverter', () => {
@@ -23,7 +24,7 @@ describe( 'SpanFontSizeConverter', () => {
 		beforeEach( () => {
 			return VirtualTestEditor
 				.create( {
-					plugins: [ FontSizeEditing, Paragraph, SpanFontSizeConverter ],
+					plugins: [ FontSizeEditing, Paragraph, SpanFontSizeConverter, DowncastConverter ],
 					fontSize: {
 						options: [ 6, 7, 8, 9, 10, 11, 12, 13, 'default',
 							14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,

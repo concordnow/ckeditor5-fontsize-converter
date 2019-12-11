@@ -5,6 +5,7 @@ import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import FontSizeEditing from '@ckeditor/ckeditor5-font/src/fontsize/fontsizeediting';
 
 import ParagraphFontSizeConverter from './../src/paragraphfontsizeconverter';
+import DowncastConverter from './../src/downcastconverter';
 import { POINT_TO_PIXEL_MULTIPLICATOR } from './../src/utils';
 
 describe( 'ParagraphFontSizeConverter', () => {
@@ -26,7 +27,7 @@ describe( 'ParagraphFontSizeConverter', () => {
 		beforeEach( () => {
 			return VirtualTestEditor
 				.create( {
-					plugins: [ FontSizeEditing, Paragraph, ParagraphFontSizeConverter ],
+					plugins: [ FontSizeEditing, Paragraph, ParagraphFontSizeConverter, DowncastConverter ],
 					fontSize: {
 						options: [ 6, 7, 8, 9, 10, 12, 13,
 							14, 16, 18, 20, 22, 24,

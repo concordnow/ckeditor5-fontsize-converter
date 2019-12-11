@@ -27,13 +27,5 @@ export default class SpanFontSizeConverter extends Plugin {
 			},
 			converterPriority: 'high'
 		} );
-
-		editor.conversion.for( 'downcast' ).attributeToElement( {
-			model: 'fontSize',
-			view: ( modelAttributeValue, viewWriter ) => viewWriter.createAttributeElement( 'span', {
-				style: `font-size:${ modelAttributeValue }px`
-			} ),
-			converterPriority: 'high'
-		} );
 	}
 }
