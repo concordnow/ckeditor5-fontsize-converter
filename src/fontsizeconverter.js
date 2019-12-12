@@ -7,7 +7,7 @@ export default class FontSizeConverter extends Plugin {
 
 	init() {
 		const editor = this.editor;
-		editor.model.schema.register( 'div', {
+		editor.model.schema.extend( 'div', {
 			allowWhere: '$block',
 			allowContentOf: '$root'
 		} );
@@ -33,7 +33,7 @@ export default class FontSizeConverter extends Plugin {
 			view: 'div'
 		} );
 
-		editor.model.schema.register( 'table', {
+		editor.model.schema.extend( 'table', {
 			allowWhere: '$block',
 			allowContentOf: '$root'
 		} );
@@ -59,7 +59,7 @@ export default class FontSizeConverter extends Plugin {
 			view: 'table'
 		} );
 
-		editor.model.schema.register( 'td', {
+		editor.model.schema.extend( 'td', {
 			allowWhere: '$block',
 			allowContentOf: '$root'
 		} );
@@ -85,7 +85,7 @@ export default class FontSizeConverter extends Plugin {
 			view: 'td'
 		} );
 
-		editor.model.schema.register( 'tr', {
+		editor.model.schema.extend( 'tr', {
 			allowWhere: '$block',
 			allowContentOf: '$root'
 		} );
@@ -111,7 +111,7 @@ export default class FontSizeConverter extends Plugin {
 			view: 'tr'
 		} );
 
-		editor.model.schema.register( 'span', {
+		editor.model.schema.extend( 'span', {
 			allowWhere: '$block',
 			allowContentOf: '$root'
 		} );
@@ -137,7 +137,7 @@ export default class FontSizeConverter extends Plugin {
 			view: 'span'
 		} );
 
-		editor.model.schema.register( 'p', {
+		editor.model.schema.extend( 'p', {
 			allowWhere: '$block',
 			allowContentOf: '$root'
 		} );
@@ -163,7 +163,7 @@ export default class FontSizeConverter extends Plugin {
 			view: 'p'
 		} );
 
-		editor.model.schema.register( 'ol', {
+		editor.model.schema.extend( 'ol', {
 			allowWhere: '$block',
 			allowContentOf: '$root'
 		} );
@@ -189,7 +189,7 @@ export default class FontSizeConverter extends Plugin {
 			view: 'ol'
 		} );
 
-		editor.model.schema.register( 'ul', {
+		editor.model.schema.extend( 'ul', {
 			allowWhere: '$block',
 			allowContentOf: '$root'
 		} );
