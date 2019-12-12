@@ -7,7 +7,7 @@ export default class FontSizeConverter extends Plugin {
 
 	init() {
 		const editor = this.editor;
-		editor.model.schema.extend( 'div', {
+		editor.model.schema.register( 'div', {
 			allowWhere: '$block',
 			allowContentOf: '$root'
 		} );
