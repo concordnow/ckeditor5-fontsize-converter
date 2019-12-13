@@ -14,7 +14,7 @@ export default class FontSizeConverter extends Plugin {
 
 		// Allow <div> elements in the model to have all attributes.
 		editor.model.schema.addAttributeCheck( context => {
-			if ( context.endsWith( 'div' ) ) {
+			if ( context.endsWith( 'div' ) || context.endsWith( 'paragraph' ) ) {
 				return true;
 			}
 		} );
@@ -27,129 +27,6 @@ export default class FontSizeConverter extends Plugin {
 			}
 		} );
 
-		// Model-to-view converter for the <div> element (attrbiutes are converted separately).
-		editor.conversion.for( 'downcast' ).elementToElement( {
-			model: 'div',
-			view: 'div'
-		} );
-
-		editor.model.schema.extend( 'table', {
-			allowWhere: '$block',
-			allowContentOf: '$root'
-		} );
-
-		// Allow <table> elements in the model to have all attributes.
-		editor.model.schema.addAttributeCheck( context => {
-			if ( context.endsWith( 'table' ) ) {
-				return true;
-			}
-		} );
-
-		// View-to-model converter converting a view <table> with all its attributes to the model.
-		editor.conversion.for( 'upcast' ).elementToElement( {
-			view: 'table',
-			model: ( viewElement, modelWriter ) => {
-				return modelWriter.createElement( 'table', viewElement.getAttributes() );
-			}
-		} );
-
-		// Model-to-view converter for the <table> element (attrbiutes are converted separately).
-		editor.conversion.for( 'downcast' ).elementToElement( {
-			model: 'table',
-			view: 'table'
-		} );
-
-		editor.model.schema.extend( 'td', {
-			allowWhere: '$block',
-			allowContentOf: '$root'
-		} );
-
-		// Allow <td> elements in the model to have all attributes.
-		editor.model.schema.addAttributeCheck( context => {
-			if ( context.endsWith( 'td' ) ) {
-				return true;
-			}
-		} );
-
-		// View-to-model converter converting a view <td> with all its attributes to the model.
-		editor.conversion.for( 'upcast' ).elementToElement( {
-			view: 'td',
-			model: ( viewElement, modelWriter ) => {
-				return modelWriter.createElement( 'td', viewElement.getAttributes() );
-			}
-		} );
-
-		// Model-to-view converter for the <td> element (attrbiutes are converted separately).
-		editor.conversion.for( 'downcast' ).elementToElement( {
-			model: 'td',
-			view: 'td'
-		} );
-
-		editor.model.schema.extend( 'tr', {
-			allowWhere: '$block',
-			allowContentOf: '$root'
-		} );
-
-		// Allow <tr> elements in the model to have all attributes.
-		editor.model.schema.addAttributeCheck( context => {
-			if ( context.endsWith( 'tr' ) ) {
-				return true;
-			}
-		} );
-
-		// View-to-model converter converting a view <tr> with all its attributes to the model.
-		editor.conversion.for( 'upcast' ).elementToElement( {
-			view: 'tr',
-			model: ( viewElement, modelWriter ) => {
-				return modelWriter.createElement( 'tr', viewElement.getAttributes() );
-			}
-		} );
-
-		// Model-to-view converter for the <tr> element (attrbiutes are converted separately).
-		editor.conversion.for( 'downcast' ).elementToElement( {
-			model: 'tr',
-			view: 'tr'
-		} );
-
-		editor.model.schema.extend( 'span', {
-			allowWhere: '$block',
-			allowContentOf: '$root'
-		} );
-
-		// Allow <span> elements in the model to have all attributes.
-		editor.model.schema.addAttributeCheck( context => {
-			if ( context.endsWith( 'span' ) ) {
-				return true;
-			}
-		} );
-
-		// View-to-model converter converting a view <span> with all its attributes to the model.
-		editor.conversion.for( 'upcast' ).elementToElement( {
-			view: 'span',
-			model: ( viewElement, modelWriter ) => {
-				return modelWriter.createElement( 'span', viewElement.getAttributes() );
-			}
-		} );
-
-		// Model-to-view converter for the <span> element (attrbiutes are converted separately).
-		editor.conversion.for( 'downcast' ).elementToElement( {
-			model: 'span',
-			view: 'span'
-		} );
-
-		editor.model.schema.extend( 'p', {
-			allowWhere: '$block',
-			allowContentOf: '$root'
-		} );
-
-		// Allow <p> elements in the model to have all attributes.
-		editor.model.schema.addAttributeCheck( context => {
-			if ( context.endsWith( 'p' ) ) {
-				return true;
-			}
-		} );
-
-		// View-to-model converter converting a view <p> with all its attributes to the model.
 		editor.conversion.for( 'upcast' ).elementToElement( {
 			view: 'p',
 			model: ( viewElement, modelWriter ) => {
@@ -157,62 +34,38 @@ export default class FontSizeConverter extends Plugin {
 			}
 		} );
 
-		// Model-to-view converter for the <p> element (attrbiutes are converted separately).
+		// Model-to-view converter for the <div> element (attrbiutes are converted separately).
 		editor.conversion.for( 'downcast' ).elementToElement( {
-			model: 'p',
-			view: 'p'
+			model: 'div',
+			view: 'div'
 		} );
 
-		editor.model.schema.extend( 'ol', {
-			allowWhere: '$block',
-			allowContentOf: '$root'
-		} );
-
-		// Allow <p> elements in the model to have all attributes.
-		editor.model.schema.addAttributeCheck( context => {
-			if ( context.endsWith( 'ol' ) ) {
-				return true;
-			}
-		} );
-
-		// View-to-model converter converting a view <p> with all its attributes to the model.
-		editor.conversion.for( 'upcast' ).elementToElement( {
-			view: 'ol',
-			model: ( viewElement, modelWriter ) => {
-				return modelWriter.createElement( 'ol', viewElement.getAttributes() );
-			}
-		} );
-
-		// Model-to-view converter for the <p> element (attrbiutes are converted separately).
 		editor.conversion.for( 'downcast' ).elementToElement( {
-			model: 'ol',
-			view: 'ol'
+			model: 'paragraph',
+			view: 'paragraph'
 		} );
 
-		editor.model.schema.extend( 'ul', {
-			allowWhere: '$block',
-			allowContentOf: '$root'
-		} );
+		// Model-to-view converter for <div> attributes.
+		// Note that a lower-level, event-based API is used here.
+		editor.conversion.for( 'downcast' ).add( dispatcher => {
+			dispatcher.on( 'attribute', ( evt, data, conversionApi ) => {
+				const { item } = data;
+				if ( item.name != 'div' && item.name != 'paragraph' ) {
+					return;
+				}
 
-		// Allow <p> elements in the model to have all attributes.
-		editor.model.schema.addAttributeCheck( context => {
-			if ( context.endsWith( 'ul' ) ) {
-				return true;
-			}
-		} );
+				const viewWriter = conversionApi.writer;
+				const viewDiv = conversionApi.mapper.toViewElement( item );
 
-		// View-to-model converter converting a view <p> with all its attributes to the model.
-		editor.conversion.for( 'upcast' ).elementToElement( {
-			view: 'ul',
-			model: ( viewElement, modelWriter ) => {
-				return modelWriter.createElement( 'ul', viewElement.getAttributes() );
-			}
-		} );
-
-		// Model-to-view converter for the <p> element (attrbiutes are converted separately).
-		editor.conversion.for( 'downcast' ).elementToElement( {
-			model: 'ul',
-			view: 'ul'
+				// In the model-to-view conversion we convert changes.
+				// An attribute can be added or removed or changed.
+				// The below code handles all 3 cases.
+				if ( data.attributeNewValue ) {
+					viewWriter.setAttribute( data.attributeKey, data.attributeNewValue, viewDiv );
+				} else {
+					viewWriter.removeAttribute( data.attributeKey, viewDiv );
+				}
+			} );
 		} );
 	}
 }
