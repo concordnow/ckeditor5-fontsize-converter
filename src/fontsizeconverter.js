@@ -12,9 +12,17 @@ export default class FontSizeConverter extends Plugin {
 			allowContentOf: '$root'
 		} );
 
+		editor.model.schema.register( 'p', {
+			allowWhere: '$block',
+			allowContentOf: '$root'
+		} );
+
 		// Allow <div> elements in the model to have all attributes.
 		editor.model.schema.addAttributeCheck( context => {
-			if ( context.endsWith( 'div' ) || context.endsWith( 'paragraph' ) ) {
+			if ( context.endsWith( 'p' ) ) {
+				return true;
+			}
+			if ( context.endsWith( 'div' ) ) {
 				return true;
 			}
 		} );
@@ -27,6 +35,12 @@ export default class FontSizeConverter extends Plugin {
 			}
 		} );
 
+		// Model-to-view converter for the <div> element (attrbiutes are converted separately).
+		editor.conversion.for( 'downcast' ).elementToElement( {
+			model: 'div',
+			view: 'div'
+		} );
+
 		editor.conversion.for( 'upcast' ).elementToElement( {
 			view: 'p',
 			model: ( viewElement, modelWriter ) => {
@@ -34,15 +48,10 @@ export default class FontSizeConverter extends Plugin {
 			}
 		} );
 
-		// Model-to-view converter for the <div> element (attrbiutes are converted separately).
+		// Model-to-view converter for the <p> element (attrbiutes are converted separately).
 		editor.conversion.for( 'downcast' ).elementToElement( {
-			model: 'div',
-			view: 'div'
-		} );
-
-		editor.conversion.for( 'downcast' ).elementToElement( {
-			model: 'paragraph',
-			view: 'paragraph'
+			model: 'p',
+			view: 'p'
 		} );
 
 		// Model-to-view converter for <div> attributes.
@@ -50,7 +59,7 @@ export default class FontSizeConverter extends Plugin {
 		editor.conversion.for( 'downcast' ).add( dispatcher => {
 			dispatcher.on( 'attribute', ( evt, data, conversionApi ) => {
 				const { item } = data;
-				if ( item.name != 'div' && item.name != 'paragraph' ) {
+				if ( item.name != 'p' && item.name != 'div' ) {
 					return;
 				}
 
