@@ -21,7 +21,7 @@
   "author": "Concordnow Worldwide Inc.",
   "license": "MIT",
   "dependencies": {
-    "@ckeditor/ckeditor5-core": "^16.0.0",
+    "@ckeditor/ckeditor5-core": "^19.0.1",
     "@ckeditor/ckeditor5-engine": "^16.0.0"
   },
   "devDependencies": {
